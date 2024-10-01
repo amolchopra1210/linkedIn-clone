@@ -32,8 +32,7 @@ const PostCreation = ({ user }) => {
 		try {
 			const postData = { content };
 			if (image) postData.image = await readFileAsDataURL(image);
-
-			createPostMutation(postData);
+			(postData.content || postData.image) && createPostMutation(postData);
 		} catch (error) {
 			console.error("Error in handlePostCreation:", error);
 		}
